@@ -178,13 +178,6 @@ class ViewController: UIViewController {
 			self.chooseArticleButton.setTitle(item, for: .normal)
 		}
         
-        chooseArticleDropDown.multiSelectionAction = { [unowned self] (indices, items) in
-            print("Muti selection action called with: \(items)")
-            if items.isEmpty {
-                self.chooseArticleButton.setTitle("", for: .normal)
-            }
-        }
-		
 		// Action triggered on dropdown cancelation (hide)
 		//		dropDown.cancelAction = { [unowned self] in
 		//			// You could for example deselect the selected item

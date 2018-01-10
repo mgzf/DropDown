@@ -14,6 +14,10 @@ open class DropDownCell: UITableViewCell {
 	@IBOutlet open weak var optionLabel: UILabel!
 	
 	var selectedBackgroundColor: UIColor?
+    
+    var defaultTextColor: UIColor?
+    
+    var selectTextColor: UIColor?
 
 }
 
@@ -44,9 +48,7 @@ extension DropDownCell {
 	}
 	
 	override open func setSelected(_ selected: Bool, animated: Bool) {
-		let executeSelection: () -> Void = { [weak self] in
-			guard let `self` = self else { return }
-
+		let executeSelection: () -> Void = { [unowned self] in
 			if let selectedBackgroundColor = self.selectedBackgroundColor {
 				if selected {
 					self.backgroundColor = selectedBackgroundColor
@@ -54,6 +56,14 @@ extension DropDownCell {
 					self.backgroundColor = .clear
 				}
 			}
+            
+            if let selectTextColor = self.selectTextColor {
+                if selected {
+                    self.optionLabel.textColor = selectTextColor
+                } else {
+                    self.optionLabel.textColor = self.defaultTextColor
+                }
+            }
 		}
 		
 		if animated {
